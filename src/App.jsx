@@ -1,5 +1,11 @@
+import Header from "./components/Header"
+
 function App() {
-  return <h1>Hello World</h1>
+  return (
+    <div className=" h-screen bg-bg-light dark:bg-bg-dark ">
+      <Header />
+    </div>
+  )
 }
 
 export default App
