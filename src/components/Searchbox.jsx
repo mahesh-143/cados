@@ -1,70 +1,27 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Combobox } from "@headlessui/react"
-
-const advocates = [
-  {
-    profile_pic:
-      "https://dennisivy-personal.s3.amazonaws.com/shanselman-cado.jpg",
-    profile_pic_stored:
-      "https://dennisivy-personal.s3.amazonaws.com/default.png",
-    username: "shanselman",
-    name: "Scott Hanselman",
-    bio: "Code, OSS, STEM, Beyoncé, 🏴󠁧󠁢󠁳󠁣󠁴󠁿🇿🇼#T1D,@Hanselminutes inclusive tech podcast! MSFT Developer Division Community #DevRel🐹🌮YouTube+TikTok My opinions",
-    twitter: "https://twitter.com/shanselman",
-    companies: [],
-    follower_count: 308953,
-  },
-  {
-    profile_pic:
-      "https://dennisivy-personal.s3.amazonaws.com/prathkum-cado.jpg",
-    profile_pic_stored:
-      "https://dennisivy-personal.s3.amazonaws.com/default.png",
-    username: "prathkum",
-    name: "Pratham",
-    bio: "Intending to significantly influence the web development industry • ex DevRel @Rapid_API • Building @MentorWebDev • https://t.co/YZzwEtTxyJ",
-    twitter: "https://twitter.com/prathkum",
-    companies: [],
-    follower_count: 300545,
-  },
-  {
-    profile_pic:
-      "https://dennisivy-personal.s3.amazonaws.com/francescociull4-cado.jpg",
-    profile_pic_stored:
-      "https://dennisivy-personal.s3.amazonaws.com/default.png",
-    username: "francescociull4",
-    name: "Francesco - francescociulla.lens",
-    bio: "I will help you to learn Web3 & DevOps → Building a 1M Community 17% → Docker Captain → @dailydotdev🥑 → Public Speaker → 4C Community builder @4ccommunityhq",
-    twitter: "https://twitter.com/francescociull4",
-    companies: [2],
-    follower_count: 135825,
-  },
-  {
-    profile_pic:
-      "https://dennisivy-personal.s3.amazonaws.com/kunalstwt-cado.jpg",
-    profile_pic_stored:
-      "https://dennisivy-personal.s3.amazonaws.com/default.png",
-    username: "kunalstwt",
-    name: "Kunal Kushwaha",
-    bio: "🥑 @CivoCloud 🎬 YouTube (300k) ✨ Founder @kubeworld @commclassroom ⭐️ GitHub Star ☁️ CNCF Ambassador 🎙 TEDx Speaker",
-    twitter: "https://twitter.com/kunalstwt",
-    companies: [],
-    follower_count: 133264,
-  },
-]
+import { getAdvocates } from "../services/axios"
 
 const Searchbox = () => {
-  const [selectedAdvocate, setSelectedAdvocate] = useState(advocates[0])
+  const [advocates, setAdvocates] = useState([])
+ 
   const [query, setQuery] = useState("")
-
-  const handleChange = (e) => {
-    setSelectedAdvocate(e.target.value)
-  }
 
   const filteredAdvocates = query
     ? advocates.filter((advocate) => {
         return advocate.name.toLowerCase().includes(query.toLocaleLowerCase())
       })
     : []
+
+    const fetchAdvocates = async () => {
+      const { data } = await getAdvocates()
+      console.log(data.advocates)
+      setAdvocates(data.advocates)
+    }
+
+  useEffect(() => {
+    fetchAdvocates()
+  }, [])
 
   return (
     <Combobox
@@ -97,7 +54,7 @@ const Searchbox = () => {
         />
       </div>
       {filteredAdvocates.length > 0 && (
-        <Combobox.Options className="absolute border border-t-0 border-black/5 dark:border-white/5 rounded-b-[10px] bg-white dark:bg-card-dark py-2 max-h-50 w-full overflow-auto">
+        <Combobox.Options className="absolute border border-t-0 border-black/5 dark:border-white/5 rounded-b-[10px] bg-white dark:bg-card-dark py-2 max-h-56 w-full overflow-auto">
           {filteredAdvocates.map((advocate) => (
             <Combobox.Option key={advocate.username} value={advocate}>
               {({ active }) => (
