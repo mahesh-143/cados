@@ -17,7 +17,7 @@ const ThemeToggle = () => {
       <span className="sr-only">Enable LightMode</span>
       <span
         className={`${
-          enabled ? "translate-x-[30px]" : "translate-x-1"
+          enabled ? "translate-x-full" : "translate-x-1"
         } flex h-7 w-7 transform rounded-full bg-black items-center justify-center transition-all duration-200 ease-in-out `}
       >
         {enabled ? (
@@ -27,7 +27,7 @@ const ThemeToggle = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 stroke-white p-[1px]"
+            className="w-4 h-4 stroke-white"
           >
             <path
               strokeLinecap="round"
@@ -42,7 +42,7 @@ const ThemeToggle = () => {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-6 h-6 stroke-white p-[1px]"
+            className="w-4 h-4 stroke-white"
           >
             <path
               strokeLinecap="round"
