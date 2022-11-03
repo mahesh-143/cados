@@ -1,15 +1,17 @@
 import axios from "axios"
 
 export const api = axios.create({
-    baseURL: "https://cados.up.railway.app"
+  baseURL: "https://cados.up.railway.app",
 })
 
 export const getAdvocates = () => {
-    const response =  api.get("/advocates")
-    return response
+  return api.get("/advocates")
+}
+
+export const filteredResults = (query) => {
+  return api.get(`/advocates/?format=json&query=${query}`)
 }
 
 export const getAdvocate = (id) => {
-    const response = api.get(`/advocates/${id}`)
-    return response
+  return api.get(`/advocates/${id}`)
 }
