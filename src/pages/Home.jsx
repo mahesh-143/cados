@@ -26,7 +26,7 @@ const Home = () => {
   return (
     <main>
       <Hero totalResults={totalResults}/>
-      <div className="flex flex-wrap max-w-7xl m-auto mt-20">
+      <div className="grid justify-center sm:grid-cols-2 md:grid-cols-3 max-w-7xl m-auto mt-20">
       {mappedCards}
       </div>
     </main>
