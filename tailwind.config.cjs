@@ -7,8 +7,8 @@ module.exports = {
       white: "#FFFFFF",
       black: "#000000",
       accent: "#D1EE6B",
-      "bg-light": "#FAF9EF",
-      "bg-dark": " #1C1C1C",
+      "bg-light": "var(--clr-bg-light)",
+      "bg-dark": " var(--clr-bg-dark)",
       "card-dark": "#1F1F1F",
     },
     fontFamily: {
