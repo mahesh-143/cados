@@ -1,11 +1,11 @@
 import Header from "./components/Header"
-import Hero from "./components/Hero"
+import Home from "./pages/Home"
 
 function App() {
   return (
-    <div className=" h-screen bg-bg-light dark:bg-bg-dark ">
+    <div>
       <Header />
-      <Hero />
+      <Home />
     </div>
   )
 }
