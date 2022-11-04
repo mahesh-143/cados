@@ -65,7 +65,7 @@ const Advocate = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="h-[600px] bg-white dark:bg-card-dark border border-black/5 dark:border-white/5 rounded-xl">
         <Timeline
           dataSource={{
             sourceType: "profile",
