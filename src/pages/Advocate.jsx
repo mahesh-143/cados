@@ -16,6 +16,7 @@ const Advocate = () => {
 
   useEffect(() => {
     fetchAdvocate(username)
+    window.scrollTo(0, 0)
   }, [username])
   return !advocate ? (
     <Loading />
