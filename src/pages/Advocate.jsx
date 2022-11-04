@@ -16,7 +16,7 @@ const Advocate = () => {
 
   useEffect(() => {
     fetchAdvocate(username)
-  }, [])
+  }, [username])
   return !advocate ? (
     <Loading />
   ) : (

@@ -1,33 +1,30 @@
 import { useEffect, useState } from "react"
 import { Combobox } from "@headlessui/react"
-import { getAdvocates } from "../services/axios"
+import { filteredResults } from "../services/axios"
+import { useNavigate } from "react-router-dom"
 
 const Searchbox = () => {
   const [advocates, setAdvocates] = useState([])
  
   const [query, setQuery] = useState("")
 
-  const filteredAdvocates = query
-    ? advocates.filter((advocate) => {
-        return advocate.name.toLowerCase().includes(query.toLocaleLowerCase())
-      })
-    : []
+  const navigate = useNavigate()
 
-    const fetchAdvocates = async () => {
-      const { data } = await getAdvocates()
-      console.log(data.advocates)
+    const fetchAdvocates = async (query) => {
+      const { data } = await filteredResults(query)
+      console.log(data) 
       setAdvocates(data.advocates)
     }
 
   useEffect(() => {
-    fetchAdvocates()
-  }, [])
+    fetchAdvocates(query)
+  }, [query])
 
   return (
     <Combobox
       as="div"
       onChange={(advocate) => {
-        console.log(advocate)
+        navigate(`/advocate/${advocate.username}`)
       }}
       className="relative max-w-lg min-w-0 border bg-white dark:bg-card-dark border-black/5 dark:border-white/5 rounded-[10px] mx-4 divide-y "
     >
@@ -53,9 +50,9 @@ const Searchbox = () => {
           className="w-full min-w-0 h-10 bg-white dark:bg-card-dark rounded-[10px] p-3 dark:placeholder:text-white/50 focus-visible:outline-0"
         />
       </div>
-      {filteredAdvocates.length > 0 && (
+      {advocates.length > 0 && (
         <Combobox.Options className="absolute border border-t-0 border-black/5 dark:border-white/5 rounded-b-[10px] bg-white dark:bg-card-dark py-2 max-h-56 w-full overflow-auto">
-          {filteredAdvocates.map((advocate) => (
+          {advocates.map((advocate) => (
             <Combobox.Option key={advocate.username} value={advocate}>
               {({ active }) => (
                 <div
@@ -79,7 +76,7 @@ const Searchbox = () => {
           ))}
         </Combobox.Options>
       )}
-      {query && filteredAdvocates.length === 0 && (
+      {query && advocates.length === 0 && (
         <p className="w-full p-2 text-black/50 dark:text-white/50 absolute bg-white dark:bg-card-dark border border-t-0 border-black/5 dark:border-white/5 rounded-b-[10px]">
           No Results Found
         </p>

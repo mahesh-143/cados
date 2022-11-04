@@ -9,7 +9,7 @@ export const getAdvocates = () => {
 }
 
 export const filteredResults = (query) => {
-  return api.get(`/advocates/?format=json&query=${query}`)
+  return api.get(`advocates/?query=${query}`)
 }
 
 export const getAdvocate = (id) => {
