@@ -4,8 +4,8 @@ export const api = axios.create({
   baseURL: "https://cados.up.railway.app",
 })
 
-export const getAdvocates = () => {
-  return api.get("/advocates")
+export const getAdvocates = (currentPage) => {
+  return api.get(`/advocates/?query=&page=${currentPage}`)
 }
 
 export const filteredResults = (query) => {
