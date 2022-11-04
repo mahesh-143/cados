@@ -12,7 +12,7 @@ const ThemeToggle = () => {
     <Switch
       checked={enabled}
       onChange={setEnabled}
-      className="bg-white border border-black/10 rounded-[20px] relative inline-flex h-9 w-16 items-center "
+      className="bg-white border shrink-0 border-black/10 rounded-[20px] relative inline-flex h-9 w-16 items-center "
     >
       <span className="sr-only">Enable LightMode</span>
       <span
