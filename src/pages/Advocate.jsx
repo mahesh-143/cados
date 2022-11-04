@@ -50,7 +50,7 @@ const Advocate = () => {
               {advocate.bio}
             </p>
             <div className="flex gap-5 items-center justify-center md:justify-start">
-              <a href={`https://twitter.com/${advocate.username}`}>
+              <a href={`https://twitter.com/${advocate.username}`} target="_blank">
                 <button className="bg-accent px-3 py-2 rounded-[10px] text-lg font-medium flex items-center gap-1">
                   <svg
                     width="20"
