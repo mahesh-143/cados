@@ -1,17 +1,27 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import Loading from "../components/Loading"
 import { getAdvocate } from "../services/axios"
 import { Timeline } from "react-twitter-widgets"
+import { useNavigate } from "react-router-dom"
 
 const Advocate = () => {
   const [advocate, setAdvocate] = useState()
 
   let { username } = useParams()
 
+  const navigate = useNavigate()
   const fetchAdvocate = async (username) => {
+    try{
     const { data } = await getAdvocate(username)
     setAdvocate(data.advocate)
+    }
+    catch(error){
+      console.log(error)
+      if(error.code == "ERR_BAD_RESPONSE"){
+        navigate("*")
+      }
+    }
   }
 
   useEffect(() => {
