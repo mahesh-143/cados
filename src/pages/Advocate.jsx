@@ -40,7 +40,7 @@ const Advocate = () => {
             className="border-[3px] border-accent rounded-full w-[200px] h-[200px]"
           />
           <div className="max-w-[31.25rem] ">
-            <h1 className="font-medium text-5xldark:text-white mb-2">
+            <h1 className="font-medium text-5xl dark:text-white mb-2">
               {advocate.name}
             </h1>
             <span className="text-lg text-black/50 dark:text-white/50 mb-5 block">
